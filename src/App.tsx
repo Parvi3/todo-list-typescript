@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import { Header, ListTodo, InputTodo } from "./Components/index";
+import { Header, InputTodo } from "./Components/index";
 
 function App() {
     return (
