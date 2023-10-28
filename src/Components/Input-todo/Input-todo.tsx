@@ -1,18 +1,51 @@
-import React from "react";
+import React, {
+    ChangeEvent,
+    FormEvent,
+    useCallback,
+    useRef,
+    useState,
+} from "react";
+
 import "./Input-todo.scss";
+
 export const InputTodo = () => {
+    const [value, setValue] = useState<string>("");
+
+    const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        setValue(event.target.value);
+    }, []);
+
+    const formRef = useRef<HTMLFormElement>({
+        current: null,
+    } as unknown as HTMLFormElement);
+
+    const onSubmit = useCallback((event: FormEvent) => {
+        try {
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            setValue("");
+        } catch {
+            console.log("пососи");
+        }
+    }, []);
+
     return (
-        <section>
-            <div className="input-todo">
+        <form className="form-todo" onSubmit={onSubmit} ref={formRef}>
+            <div className="form-todo__field">
                 <input
                     placeholder="Что нужно сделать?"
                     type="text"
-                    className="input-todo__text"
+                    name="todo"
+                    className="form-todo__input"
+                    value={value}
+                    onChange={onChange}
                 />
-                <button className="input-todo__button" type="submit">
+                <button className="form-todo__button" type="submit">
                     Добавить
                 </button>
             </div>
-        </section>
+        </form>
     );
 };
