@@ -1,0 +1,27 @@
+.form-todo {
+    &__field {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        height: 40px;
+    }
+
+    &__button {
+        background-color: #8bcd7a;
+        margin-left: 10px;
+        width: 25%;
+        border: none;
+        height: 40px;
+        cursor: pointer;
+
+        &:hover {
+            background-color:#5feb08;
+            transition: all .5s;
+        }
+    }
+}
+
+input::placeholder {
+    transform: translateX(10px);
+    font-weight: bold;
+}
