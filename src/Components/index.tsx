@@ -1,5 +1,3 @@
-import { InputTodo } from "./Input-todo/Input-todo";
-import { Header } from "./Header-todo/Header-todo";
-import { ListTodo } from "./List-todo/List-todo";
-
-export { Header, ListTodo, InputTodo };
+export { InputTodo } from "./InputTodo";
+export { Header } from "./HeaderTodo";
+export { List } from "./List";
