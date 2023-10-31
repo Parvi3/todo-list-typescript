@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { ITodo } from "./interface";
+import { Header, InputTodo, List } from "./components";
 import "./App.scss";
-import { Header, InputTodo } from "./Components/index";
 
-function App() {
+export const App = () => {
+    const [todos, setTodos] = useState<ITodo[]>([]);
+
+    const addTodo = (todo: ITodo): void => {
+        setTodos([...todos, todo]);
+    };
+
     return (
         <div className="App">
             <Header />
-            <InputTodo />
+            <InputTodo addTodo={addTodo} />
+            <List todos={todos} />
         </div>
     );
-}
-
-export default App;
+};
