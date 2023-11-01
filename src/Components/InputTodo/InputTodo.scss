@@ -1,23 +1,32 @@
 .form-todo {
+    display: flex;
+    width: 100%;
+
     &__field {
         display: flex;
+        flex:auto;
+        gap: 10px;
         justify-content: center;
         margin-top: 15px;
         height: 40px;
     }
 
     &__button {
-        background-color: #8bcd7a;
-        margin-left: 10px;
-        width: 25%;
+        background-color: #60656a;
+        color: #fff;
+        width: 20%;
         border: none;
         height: 40px;
         cursor: pointer;
 
         &:hover {
-            background-color:#5feb08;
+            filter: brightness(120%);
             transition: all .5s;
         }
+    }
+
+    &__input {
+        flex: auto;
     }
 }
 

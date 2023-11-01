@@ -10,11 +10,15 @@ export const App = () => {
         setTodos([...todos, todo]);
     };
 
+    const delTodo = (id: string): void => {
+        setTodos(todos.filter((oldTodo) => oldTodo.id !== id));
+    };
+
     return (
-        <div className="App">
+        <div className="app">
             <Header />
             <InputTodo addTodo={addTodo} />
-            <List todos={todos} />
+            <List todos={todos} delTodo={delTodo} />
         </div>
     );
 };

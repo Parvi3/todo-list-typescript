@@ -1,7 +1,8 @@
+import React from "react";
 import { CardTodo } from "../CardTodo";
 import { IList } from "./List.interface";
 
-export const List = ({ todos }: IList) => {
+export const List = ({ todos, delTodo }: IList) => {
     return (
         <ul className="list">
             {todos.map((todo, index) => (
@@ -10,6 +11,7 @@ export const List = ({ todos }: IList) => {
                     order={index + 1}
                     className="list__item"
                     todo={todo}
+                    delTodo={delTodo}
                 />
             ))}
         </ul>
