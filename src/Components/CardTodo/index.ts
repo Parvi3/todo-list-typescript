@@ -1,2 +1,1 @@
-export { CardTodo } from "./CardTodo";
-
+export { CardTodo } from './CardTodo';

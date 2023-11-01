@@ -1,0 +1,42 @@
+ul {
+    padding-left: 0;
+    border-color: red;
+}
+
+.list {
+    list-style-type: none;
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+        height: 40px;
+    }
+}
+
+.card-todo__name {
+    display: flex;
+    font-size: 20px;
+    padding-left: 10px;
+    border-style:solid;
+    border-width: 1px;
+    min-height: 100%;
+    align-items: center;
+}
+
+.card-todo__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8bcd7a;
+    margin-left: 10px;
+    width: 25%;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+        background-color:#5feb08;
+        transition: all .5s;
+    }
+}
