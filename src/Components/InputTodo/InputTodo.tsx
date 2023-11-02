@@ -38,7 +38,11 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
                     value={value}
                     onChange={onChange}
                 />
-                <button className="form-todo__button" type="submit">
+                <button
+                    disabled={!value.length}
+                    className="form-todo__button"
+                    type="submit"
+                >
                     Добавить
                 </button>
             </div>

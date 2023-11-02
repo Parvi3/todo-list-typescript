@@ -6,7 +6,6 @@
         display: flex;
         flex:auto;
         gap: 10px;
-        justify-content: center;
         margin-top: 15px;
         height: 40px;
     }
@@ -16,7 +15,6 @@
         color: #fff;
         width: 20%;
         border: none;
-        height: 40px;
         cursor: pointer;
 
         &:hover {

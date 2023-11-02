@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, FocusEvent } from "react";
 import { ICardTodo } from "./CardTodo.interface";
 import "./CardTodo.scss";
 import { Icon } from "../Icon";
@@ -8,6 +8,7 @@ export const CardTodo: FC<ICardTodo> = ({
     className,
     order,
     delTodo,
+    onChangeTodo,
 }) => {
     const { id, name } = todo ?? {};
 
@@ -15,9 +16,25 @@ export const CardTodo: FC<ICardTodo> = ({
         delTodo(id);
     }, [delTodo, id]);
 
+    const onChangeHandler = useCallback(
+        (event: FocusEvent<HTMLInputElement, Element>) => {
+            const newValue = event.target.value;
+            if (name !== newValue) {
+                onChangeTodo({ id, value: newValue });
+            }
+        },
+        [id, name, onChangeTodo]
+    );
+
     return (
         <li className={`${className} card-todo`}>
-            <p className="card-todo__name" id={id}>{`${order}. ${name}`}</p>
+            <input
+                className="card-todo__name"
+                type="text"
+                id={id}
+                defaultValue={`${order}. ${name}`}
+                onBlur={onChangeHandler}
+            />
             <button className="card-todo__button" onClick={onClickHandler}>
                 <Icon name="clear" />
             </button>

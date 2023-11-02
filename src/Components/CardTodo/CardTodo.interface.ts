@@ -4,5 +4,6 @@ export interface ICardTodo {
     todo: ITodo;
     className?: string;
     order: number;
-    delTodo: (todo: string) => void
+    delTodo: (todo: string) => void;
+    onChangeTodo: (props: { id: string, value: string }) => void;
 }
