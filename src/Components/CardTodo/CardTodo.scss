@@ -4,9 +4,12 @@ ul {
 }
 
 .list {
+    display: flex;
     list-style-type: none;
+    flex-direction: column;
     &__item {
         display: flex;
+        flex: auto;
         justify-content: center;
         align-items: center;
         margin-top: 15px;
@@ -16,6 +19,7 @@ ul {
 
 .card-todo__name {
     display: flex;
+    flex: auto;
     font-size: 20px;
     padding-left: 10px;
     border-style:solid;
@@ -28,15 +32,15 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #8bcd7a;
+    background-color: #60656a;
     margin-left: 10px;
-    width: 25%;
+    width: 20%;
     height: 40px;
     cursor: pointer;
     border: none;
 
     &:hover {
-        background-color:#5feb08;
+        filter: brightness(120%);
         transition: all .5s;
     }
 }

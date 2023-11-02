@@ -2,7 +2,7 @@ import React from "react";
 import { CardTodo } from "../CardTodo";
 import { IList } from "./List.interface";
 
-export const List = ({ todos, delTodo }: IList) => {
+export const List = ({ todos, delTodo, onChangeTodo }: IList) => {
     return (
         <ul className="list">
             {todos.map((todo, index) => (
@@ -12,6 +12,7 @@ export const List = ({ todos, delTodo }: IList) => {
                     className="list__item"
                     todo={todo}
                     delTodo={delTodo}
+                    onChangeTodo={onChangeTodo}
                 />
             ))}
         </ul>
