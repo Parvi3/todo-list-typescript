@@ -6,10 +6,12 @@ import "./InputTodo.scss";
 export const InputTodo = ({ addTodo }: IInputTodo) => {
     const [value, setValue] = useState("");
 
+    // функция для получения значение после onChange в инпуте
     const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
     }, []);
 
+    // функция срабатывает после отправки формы и отмены стандартного  поведения формы
     const onSubmit = useCallback(
         (event: FormEvent) => {
             try {
@@ -33,7 +35,6 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
                 <input
                     placeholder="Что нужно сделать?"
                     type="text"
-                    name="todo"
                     className="form-todo__input"
                     value={value}
                     onChange={onChange}
