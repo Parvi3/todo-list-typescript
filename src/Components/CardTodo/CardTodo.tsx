@@ -12,10 +12,12 @@ export const CardTodo: FC<ICardTodo> = ({
 }) => {
     const { id, name } = todo ?? {};
 
+    // функция для передачи в delTodo id и после в верх по дом дереву
     const onClickHandler = useCallback(() => {
         delTodo(id);
     }, [delTodo, id]);
 
+    // получаем значение и передаем дальше по дом дереву в верх
     const onChangeHandler = useCallback(
         (event: FocusEvent<HTMLInputElement, Element>) => {
             const newValue = event.target.value;

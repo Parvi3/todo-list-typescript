@@ -1,29 +1,35 @@
 import React, { useCallback, useState } from "react";
-import { ITodo } from "./interface";
+import { ITodo, IChangeTodo } from "./interface";
 import { Header, InputTodo, List } from "./components";
 import "./App.scss";
 
 export const App = () => {
     const [todos, setTodos] = useState<ITodo[]>([]);
 
-    const addTodo = (todo: ITodo): void => {
-        setTodos([...todos, todo]);
-    };
-
-    const delTodo = (id: string): void => {
-        setTodos(todos.filter((oldTodo) => oldTodo.id !== id));
-    };
-
-    const onChangeTodo = useCallback(
-        ({ id, value }: { id: string; value: string }) => {
-            setTodos((oldTodos) =>
-                oldTodos.map((oldTodo) =>
-                    oldTodo.id === id ? { id, name: value } : oldTodo
-                )
-            );
+    // функция для добавления в список
+    const addTodo = useCallback(
+        (todo: ITodo): void => {
+            setTodos([...todos, todo]);
         },
-        []
+        [todos]
     );
+
+    // функция для удаления выбранного элемента из списка
+    const delTodo = useCallback(
+        (id: string) => {
+            setTodos(todos.filter((oldTodo) => oldTodo.id !== id));
+        },
+        [todos]
+    );
+
+    // функция для редактирования элемента после клика на нем путем получение значения в CardTodo
+    const onChangeTodo = useCallback(({ id, value }: IChangeTodo) => {
+        setTodos((oldTodos) =>
+            oldTodos.map((oldTodo) =>
+                oldTodo.id === id ? { id, name: value } : oldTodo
+            )
+        );
+    }, []);
 
     return (
         <div className="app">
