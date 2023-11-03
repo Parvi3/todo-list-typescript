@@ -19,7 +19,7 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
 
                 event.stopPropagation();
 
-                addTodo({ id: uuidv4(), name: value });
+                addTodo({ id: uuidv4(), name: value, completed: false });
 
                 setValue("");
             } catch {

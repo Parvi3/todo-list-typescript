@@ -6,9 +6,9 @@ import { Icon } from "../Icon";
 export const CardTodo: FC<ICardTodo> = ({
     todo,
     className,
-    order,
     delTodo,
     onChangeTodo,
+    toggleComplete,
 }) => {
     const { id, name } = todo ?? {};
 
@@ -28,13 +28,22 @@ export const CardTodo: FC<ICardTodo> = ({
         [id, name, onChangeTodo]
     );
 
+    const onClickComplete = useCallback(() => {
+        toggleComplete(id);
+    }, [id, toggleComplete]);
+
     return (
         <li className={`${className} card-todo`}>
+            <input
+                type="checkbox"
+                className="card-todo__checkbox"
+                onClick={onClickComplete}
+            />
             <input
                 className="card-todo__name"
                 type="text"
                 id={id}
-                defaultValue={`${order}. ${name}`}
+                defaultValue={name}
                 onBlur={onChangeHandler}
             />
             <button className="card-todo__button" onClick={onClickHandler}>
