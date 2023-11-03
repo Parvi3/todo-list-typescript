@@ -8,6 +8,8 @@
         gap: 10px;
         margin-top: 15px;
         height: 40px;
+        border-style:solid;
+        border-width: 1px;
     }
 
     &__button {
@@ -18,17 +20,19 @@
         cursor: pointer;
 
         &:hover {
-            filter: brightness(120%);
-            transition: all .5s;
+            filter: brightness(140%);
+            transition: all .2s;
         }
     }
 
     &__input {
         flex: auto;
+        border: none;
+        outline: none;
     }
 }
 
 input::placeholder {
     transform: translateX(10px);
-    font-weight: bold;
+    font-size: 15px;
 }

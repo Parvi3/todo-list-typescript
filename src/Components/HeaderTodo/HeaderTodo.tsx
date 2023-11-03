@@ -1,12 +1,14 @@
 import React from "react";
 import "./HeaderTodo.scss";
+import { IQuantuty } from "./Header.interface";
 
-export const Header = () => {
+export const Header = ({ quantutyTodo }: IQuantuty) => {
     return (
-        <header className="header">
-            <div className="header">
-                <h3 className="header__title">Список дел</h3>
-            </div>
+        <header className="header-todo">
+            <h1 className="header-todo__title">Список дел</h1>
+            <h3 className="header-todo__task">
+                {`Количество выполненных задач - ${quantutyTodo}`}
+            </h3>
         </header>
     );
 };

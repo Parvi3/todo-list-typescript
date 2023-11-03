@@ -5,4 +5,5 @@ export interface IList {
     className?: string;
     delTodo: (todo: string) => void;
     onChangeTodo: (props: IChangeTodo) => void;
+    toggleComplete: (id: string) => void;
 }

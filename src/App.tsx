@@ -14,6 +14,8 @@ export const App = () => {
         [todos]
     );
 
+    let quantutyTodo = todos.filter((todos) => todos.completed === true).length;
+
     // функция для удаления выбранного элемента из списка
     const delTodo = useCallback(
         (id: string) => {
@@ -26,16 +28,37 @@ export const App = () => {
     const onChangeTodo = useCallback(({ id, value }: IChangeTodo) => {
         setTodos((oldTodos) =>
             oldTodos.map((oldTodo) =>
-                oldTodo.id === id ? { id, name: value } : oldTodo
+                oldTodo.id === id
+                    ? { id, name: value, completed: false }
+                    : oldTodo
             )
         );
     }, []);
 
+    // функция для изменение completed при клике на чекбокс
+    const toggleComplete = useCallback(
+        (id: string) => {
+            setTodos(
+                todos.map((todo) =>
+                    todo.id === id
+                        ? { ...todo, completed: !todo.completed }
+                        : todo
+                )
+            );
+        },
+        [todos]
+    );
+
     return (
         <div className="app">
-            <Header />
+            <Header quantutyTodo={quantutyTodo} />
             <InputTodo addTodo={addTodo} />
-            <List todos={todos} delTodo={delTodo} onChangeTodo={onChangeTodo} />
+            <List
+                todos={todos}
+                delTodo={delTodo}
+                onChangeTodo={onChangeTodo}
+                toggleComplete={toggleComplete}
+            />
         </div>
     );
 };
