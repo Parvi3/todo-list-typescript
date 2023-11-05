@@ -13,9 +13,13 @@ ul {
         justify-content: center;
         align-items: center;
         margin-top: 15px;
-        border-style:solid;
+        border-style: solid;
         border-width: 1px;
     }
+}
+
+.completed {
+    text-decoration: line-through;
 }
 
 .card-todo {
