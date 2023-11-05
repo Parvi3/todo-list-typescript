@@ -6,11 +6,11 @@ import { Icon } from "../Icon";
 export const CardTodo: FC<ICardTodo> = ({
     todo,
     className,
-    delTodo,
     onChangeTodo,
     toggleComplete,
+    delTodo,
 }) => {
-    const { id, name } = todo ?? {};
+    const { id, name, completed } = todo ?? {};
 
     // функция для передачи в delTodo id и после в верх по дом дереву
     const onClickHandler = useCallback(() => {
@@ -32,6 +32,8 @@ export const CardTodo: FC<ICardTodo> = ({
         toggleComplete(id);
     }, [id, toggleComplete]);
 
+    const completedLineThrough = completed ? `completed` : "";
+
     return (
         <li className={`${className} card-todo`}>
             <input
@@ -40,7 +42,8 @@ export const CardTodo: FC<ICardTodo> = ({
                 onClick={onClickComplete}
             />
             <input
-                className="card-todo__name"
+                disabled={completed}
+                className={`card-todo__name ${completedLineThrough}`}
                 type="text"
                 id={id}
                 defaultValue={name}

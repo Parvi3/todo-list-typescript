@@ -4,9 +4,9 @@ import { IList } from "./List.interface";
 
 export const List = ({
     todos,
-    delTodo,
     onChangeTodo,
     toggleComplete,
+    delTodo,
 }: IList) => {
     return (
         <ul className="list">
@@ -15,8 +15,8 @@ export const List = ({
                     key={todo.id}
                     className="list__item"
                     todo={todo}
-                    delTodo={delTodo}
                     onChangeTodo={onChangeTodo}
+                    delTodo={delTodo}
                     toggleComplete={toggleComplete}
                 />
             ))}

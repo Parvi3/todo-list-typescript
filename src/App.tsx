@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from "react";
 import { ITodo, IChangeTodo } from "./interface";
-import { Header, InputTodo, List } from "./components";
+import { Header, InputTodo, List, PopUp } from "./components";
 import "./App.scss";
 
 export const App = () => {
     const [todos, setTodos] = useState<ITodo[]>([]);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [delId, setDelId] = useState<string>();
 
     // функция для добавления в список
     const addTodo = useCallback(
@@ -14,15 +16,16 @@ export const App = () => {
         [todos]
     );
 
-    let quantutyTodo = todos.filter((todos) => todos.completed === true).length;
+    const popUpOpen = useCallback((id: string) => {
+        setDelId(id);
+        setIsOpen(true);
+    }, []);
 
     // функция для удаления выбранного элемента из списка
-    const delTodo = useCallback(
-        (id: string) => {
-            setTodos(todos.filter((oldTodo) => oldTodo.id !== id));
-        },
-        [todos]
-    );
+    const delTodo = useCallback(() => {
+        setTodos(todos.filter((oldTodo) => oldTodo.id !== delId));
+        setIsOpen(false);
+    }, [delId, todos]);
 
     // функция для редактирования элемента после клика на нем путем получение значения в CardTodo
     const onChangeTodo = useCallback(({ id, value }: IChangeTodo) => {
@@ -49,16 +52,28 @@ export const App = () => {
         [todos]
     );
 
+    const quantutyTodo = todos.filter(
+        (todos) => todos.completed === true
+    ).length;
+
+    const closePopUp = useCallback(() => {
+        setIsOpen(false);
+        setDelId("");
+    }, []);
+
     return (
         <div className="app">
-            <Header quantutyTodo={quantutyTodo} />
-            <InputTodo addTodo={addTodo} />
-            <List
-                todos={todos}
-                delTodo={delTodo}
-                onChangeTodo={onChangeTodo}
-                toggleComplete={toggleComplete}
-            />
+            <div className="app">
+                <Header quantutyTodo={quantutyTodo} />
+                <InputTodo addTodo={addTodo} />
+                <List
+                    todos={todos}
+                    onChangeTodo={onChangeTodo}
+                    toggleComplete={toggleComplete}
+                    delTodo={popUpOpen}
+                />
+            </div>
+            <PopUp isOpen={isOpen} close={closePopUp} okClick={delTodo} />
         </div>
     );
 };
