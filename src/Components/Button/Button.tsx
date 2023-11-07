@@ -21,10 +21,8 @@ export const Button: FC<IButton> = ({
             })}
             {...props}
         >
-            {!!iconName && (
-                <Icon name={iconName} className="button-todo__icon" />
-            )}
-            {!!text && <span className="botton-todo__text">{text}</span>}
+            {!!iconName && <Icon name={iconName} />}
+            {!!text && <span className="button-todo__text">{text}</span>}
         </button>
     );
 };

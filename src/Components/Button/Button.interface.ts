@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-    className: string;
+    className?: string;
     mode?: TButton;
     text?: string;
     iconName?: string;

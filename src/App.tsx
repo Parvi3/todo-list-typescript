@@ -16,6 +16,7 @@ export const App = () => {
         [todos]
     );
 
+    // функция чтобы открыть модальное окно и получить id элемента
     const popUpOpen = useCallback((id: string) => {
         setDelId(id);
         setIsOpen(true);

@@ -21,38 +21,3 @@ ul {
 .completed {
     text-decoration: line-through;
 }
-
-.card-todo {
-    &__name {
-        display: flex;
-        flex: auto;
-        font-size: 20px;
-        padding-left: 10px;
-        border: none;
-        outline: none;
-        min-height: 100%;
-        align-items: center;
-    }
-
-    &__button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #60656a;
-        width: 20%;
-        height: 40px;
-        border: none;
-        cursor: pointer;
-    
-        &:hover {
-            filter: brightness(140%);
-            transition: all .3s;
-        }
-    }
-
-    &__checkbox {
-        cursor: pointer;
-        width: 20px;
-        height: 20px;
-    }
-}

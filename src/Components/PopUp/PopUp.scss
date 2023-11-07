@@ -40,17 +40,4 @@
         height: 40px;
         gap: 10px;
     }
-
-    &__button {
-        background-color: #60656a;
-        color: #fff;
-        width: 40%;
-        border: none;
-        cursor: pointer;
-    
-        &:hover {
-            filter: brightness(140%);
-            transition: all .2s;
-        }
-    }
 }
