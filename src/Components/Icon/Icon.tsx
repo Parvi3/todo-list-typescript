@@ -3,6 +3,7 @@ import { IIcon } from "./Icon.interface";
 import { DEFAULT_ICON } from "./Icon.constans";
 import classNames from "classnames";
 import Icons from "../../assets/Icon.svg";
+import "./Icon.scss";
 
 export const Icon: FC<IIcon> = ({
     name,

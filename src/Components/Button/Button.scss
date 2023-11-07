@@ -1,0 +1,28 @@
+.button-todo {
+    &--primary {
+        background-color: #60656a;
+        color: #fff;
+        width: 20%;
+        border: none;
+        height: 40px;
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(140%);
+            transition: all .2s;
+        }
+    }
+
+    &--secondary {
+        background-color: #60656a;
+        color: #fff;
+        width: 40%;
+        border: none;
+        cursor: pointer;
+    
+        &:hover {
+            filter: brightness(140%);
+            transition: all .2s;
+        }
+    }
+}

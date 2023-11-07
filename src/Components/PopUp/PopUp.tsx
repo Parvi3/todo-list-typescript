@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { IPopUp } from "./PopUp.interface";
+import { Button } from "../Button";
 import "./PopUp.scss";
 
 export const PopUp: FC<IPopUp> = ({ isOpen, okClick, close }) => {
@@ -11,13 +12,9 @@ export const PopUp: FC<IPopUp> = ({ isOpen, okClick, close }) => {
                 </h2>
 
                 <div className="pop-up-todo__wrapper">
-                    <button className="pop-up-todo__button" onClick={okClick}>
-                        Да
-                    </button>
+                    <Button text="Да" mode="secondary" onClick={okClick} />
 
-                    <button className="pop-up-todo__button" onClick={close}>
-                        Нет
-                    </button>
+                    <Button text="Нет" mode="secondary" onClick={close} />
                 </div>
             </div>
 

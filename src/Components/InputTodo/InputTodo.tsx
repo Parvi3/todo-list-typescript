@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IInputTodo } from "./InputTodo.interface";
+import { Button } from "../Button";
+import { Input } from "../Input/Input";
 import "./InputTodo.scss";
 
 export const InputTodo = ({ addTodo }: IInputTodo) => {
@@ -32,20 +34,19 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
     return (
         <form className="form-todo" onSubmit={onSubmit}>
             <div className="form-todo__field">
-                <input
-                    placeholder="Что нужно сделать?"
-                    type="text"
-                    className="form-todo__input"
+                <Input
+                    placeholderText="Что нужно сделать?"
+                    classNameText="form-todo__input"
                     value={value}
                     onChange={onChange}
                 />
-                <button
-                    disabled={!value.length}
-                    className="form-todo__button"
+
+                <Button
                     type="submit"
-                >
-                    Добавить
-                </button>
+                    disabled={!value.length}
+                    text="Добавить"
+                    mode="primary"
+                />
             </div>
         </form>
     );
