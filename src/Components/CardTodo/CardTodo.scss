@@ -7,11 +7,9 @@ ul {
 
     &__item {
         display: grid;
-        grid-template-columns: auto  20%;
+        grid-template-columns: auto  25%;
         height: 40px;
         margin-top: 15px;
-        border-style: solid;
-        border-width: 1px;
     }
 }
 
@@ -19,6 +17,8 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .completed {

@@ -46,7 +46,7 @@ export const App = () => {
     const onChangeTodo = useCallback(({ id, value }: IChangeTodo) => {
         setTodos((oldTodos) =>
             oldTodos.map((oldTodo) =>
-                oldTodo.id === id
+                oldTodo.id === id && value.length > 2
                     ? { id, name: value, completed: false }
                     : oldTodo
             )
@@ -67,14 +67,16 @@ export const App = () => {
         [todos]
     );
 
-    const quantityTodo = todos.filter(
-        (todos) => todos.completed === true
-    ).length;
-
+    // функция чтобы закрыть модальное окно
     const closePopUp = useCallback(() => {
         setIsOpen(false);
         setDelId("");
     }, []);
+
+    // функция для подсчета выполненных задач
+    const quantityTodo = todos.filter(
+        (todos) => todos.completed === true
+    ).length;
 
     return (
         <div className="app">

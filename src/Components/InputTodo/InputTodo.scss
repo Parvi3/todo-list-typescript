@@ -3,12 +3,23 @@
 
     &__field {
         display: grid;
-        grid-template-columns: auto 20%;
+        grid-template-columns: auto 25%;
         height: 40px;
+    }
+    &__input {
         border-style:solid;
         border-width: 1px;
     }
+    &__button {
+        filter: brightness(140%);
+    
+        &:hover {
+            transform: scale(1.111);
+            border-radius: 10px 10px;
+        }
+    }
 }
+
 
 input::placeholder {
     transform: translateX(10px);
