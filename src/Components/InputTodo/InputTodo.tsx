@@ -7,7 +7,7 @@ import "./InputTodo.scss";
 
 export const InputTodo = ({ addTodo }: IInputTodo) => {
     const [value, setValue] = useState("");
-
+    console.log(value);
     // функция для получения значение после onChange в инпуте
     const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
@@ -31,6 +31,8 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
         [addTodo, value]
     );
 
+    const button = value.length > 2 ? "form-todo__button" : undefined;
+
     return (
         <form className="form-todo" onSubmit={onSubmit}>
             <div className="form-todo__field">
@@ -39,10 +41,13 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
                     className="form-todo__input"
                     value={value}
                     onChange={onChange}
+                    minLength={3}
+                    maxLength={40}
                 />
 
                 <Button
-                    className="form-todo__button"
+                    className={button}
+                    mode="secondary"
                     type="submit"
                     disabled={!value.length}
                     text="Добавить"

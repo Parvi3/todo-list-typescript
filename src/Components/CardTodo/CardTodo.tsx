@@ -30,13 +30,18 @@ export const CardTodo: FC<ICardTodo> = ({
         [id, name, onChangeTodo]
     );
 
+    // флажок для completed: передача id для изменение состояния на противоположное
     const onClickComplete = useCallback(() => {
         toggleComplete(id);
     }, [id, toggleComplete]);
 
+    // зачеркивает текст
     const completedLineThrough = completed ? `completed` : "";
 
-    return (
+    // удаляет из списка пустые формы
+    const blankStringCheck = name.length > 0 && name.trim() !== "";
+
+    return blankStringCheck ? (
         <li className={`${className} card-todo`}>
             <div className="card-todo__wrapper">
                 <Checkbox
@@ -46,6 +51,7 @@ export const CardTodo: FC<ICardTodo> = ({
 
                 <Input
                     disabled={completed}
+                    placeholderText="Пустая задача исчезнет из списка"
                     className={`${completedLineThrough}`}
                     id={id}
                     defaultValue={name}
@@ -54,5 +60,5 @@ export const CardTodo: FC<ICardTodo> = ({
             </div>
             <Button mode="primary" iconName="clear" onClick={onClickHandler} />
         </li>
-    );
+    ) : null;
 };
