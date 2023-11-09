@@ -1,9 +1,9 @@
 import React, { FC, useCallback, FocusEvent } from "react";
 import { ICardTodo } from "./CardTodo.interface";
-import "./CardTodo.scss";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { Checkbox } from "../Checkbox";
+import "./CardTodo.scss";
 
 export const CardTodo: FC<ICardTodo> = ({
     todo,
@@ -38,16 +38,20 @@ export const CardTodo: FC<ICardTodo> = ({
 
     return (
         <li className={`${className} card-todo`}>
-            <Checkbox name="card-todo__checkbox" onClick={onClickComplete} />
+            <div className="card-todo__wrapper">
+                <Checkbox
+                    className="card-todo__checkbox"
+                    onClick={onClickComplete}
+                />
 
-            <Input
-                disabled={completed}
-                classNameText={`${completedLineThrough}`}
-                id={id}
-                defaultValue={name}
-                onBlur={onChangeHandler}
-            />
-
+                <Input
+                    disabled={completed}
+                    className={`${completedLineThrough}`}
+                    id={id}
+                    defaultValue={name}
+                    onBlur={onChangeHandler}
+                />
+            </div>
             <Button mode="primary" iconName="clear" onClick={onClickHandler} />
         </li>
     );

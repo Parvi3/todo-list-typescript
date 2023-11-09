@@ -36,16 +36,16 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
             <div className="form-todo__field">
                 <Input
                     placeholderText="Что нужно сделать?"
-                    classNameText="form-todo__input"
+                    className="form-todo__input"
                     value={value}
                     onChange={onChange}
                 />
 
                 <Button
+                    className="form-todo__button"
                     type="submit"
                     disabled={!value.length}
                     text="Добавить"
-                    mode="primary"
                 />
             </div>
         </form>

@@ -12,9 +12,18 @@ export const PopUp: FC<IPopUp> = ({ isOpen, okClick, close }) => {
                 </h2>
 
                 <div className="pop-up-todo__wrapper">
-                    <Button text="Да" mode="secondary" onClick={okClick} />
+                    <Button
+                        text="Да"
+                        mode="secondary"
+                        onClick={okClick}
+                        className="pop-up-todo__button"
+                    />
 
-                    <Button text="Нет" mode="secondary" onClick={close} />
+                    <Button
+                        text="Нет"
+                        onClick={close}
+                        className="pop-up-todo__button"
+                    />
                 </div>
             </div>
 

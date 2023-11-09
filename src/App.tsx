@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ITodo, IChangeTodo } from "./interface";
 import { Header, InputTodo, List, PopUp } from "./components";
 import "./App.scss";
@@ -7,6 +7,20 @@ export const App = () => {
     const [todos, setTodos] = useState<ITodo[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [delId, setDelId] = useState<string>();
+
+    useEffect(() => {
+        const local = localStorage.getItem("Todos");
+        if (local) {
+            const jsonLocal = JSON.parse(local);
+            if (jsonLocal.length) {
+                setTodos(jsonLocal);
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("Todos", JSON.stringify(todos));
+    }, [todos]);
 
     // функция для добавления в список
     const addTodo = useCallback(
@@ -53,7 +67,7 @@ export const App = () => {
         [todos]
     );
 
-    const quantutyTodo = todos.filter(
+    const quantityTodo = todos.filter(
         (todos) => todos.completed === true
     ).length;
 
@@ -65,7 +79,7 @@ export const App = () => {
     return (
         <div className="app">
             <div className="app">
-                <Header quantutyTodo={quantutyTodo} />
+                <Header quantityTodo={quantityTodo} />
                 <InputTodo addTodo={addTodo} />
                 <List
                     todos={todos}

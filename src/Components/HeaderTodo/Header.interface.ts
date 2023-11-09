@@ -1,3 +1,3 @@
-export interface IQuantuty {
-    quantutyTodo: number;
+export interface IQuantity {
+    quantityTodo: number;
 }
