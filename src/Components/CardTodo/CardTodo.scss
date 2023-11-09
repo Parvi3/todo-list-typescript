@@ -3,19 +3,22 @@ ul {
 }
 
 .list {
-    display: flex;
     list-style-type: none;
-    flex-direction: column;
 
     &__item {
-        display: flex;
-        flex: auto;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        grid-template-columns: auto  20%;
+        height: 40px;
         margin-top: 15px;
         border-style: solid;
         border-width: 1px;
     }
+}
+
+.card-todo__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .completed {

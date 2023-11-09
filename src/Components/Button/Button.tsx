@@ -5,7 +5,7 @@ import classNames from "classnames";
 import "./Button.scss";
 
 export const Button: FC<IButton> = ({
-    className,
+    className = "",
     mode = "primary",
     text,
     iconName,
@@ -15,7 +15,7 @@ export const Button: FC<IButton> = ({
         <button
             type="button"
             className={classNames("button-todo", {
-                className: !!className,
+                [className]: !!className,
                 "button-todo--primary": mode === "primary",
                 "button-todo--secondary": mode === "secondary",
             })}

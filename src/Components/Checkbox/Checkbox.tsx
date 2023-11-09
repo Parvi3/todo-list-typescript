@@ -3,11 +3,11 @@ import classNames from "classnames";
 import "./Checkbox.scss";
 import { ICheckbox } from "./Checkbox.interface";
 
-export const Checkbox: FC<ICheckbox> = ({ className, name, ...props }) => {
+export const Checkbox: FC<ICheckbox> = ({ className = "", ...props }) => {
     return (
         <input
-            className={classNames("checkbox", `${name}`, {
-                className: !!className,
+            className={classNames("checkbox", {
+                [className]: !!className,
             })}
             type="checkbox"
             {...props}

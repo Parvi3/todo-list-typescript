@@ -5,15 +5,14 @@ import "./Input.scss";
 
 export const Input: FC<IInput> = ({
     placeholderText,
-    classNameText,
     value,
-    className,
+    className = "",
     ...props
 }) => {
     return (
         <input
-            className={classNames("input-todo", `${classNameText}`, {
-                className: !!className,
+            className={classNames("input-todo", {
+                [className]: !!className,
             })}
             type="text"
             placeholder={placeholderText}

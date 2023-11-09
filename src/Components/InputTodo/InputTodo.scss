@@ -1,12 +1,9 @@
 .form-todo {
-    display: flex;
     width: 100%;
 
     &__field {
-        display: flex;
-        flex:auto;
-        gap: 10px;
-        margin-top: 15px;
+        display: grid;
+        grid-template-columns: auto 20%;
         height: 40px;
         border-style:solid;
         border-width: 1px;
