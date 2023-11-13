@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ITodo, IChangeTodo } from "./interface";
-import { Header, InputTodo, List, PopUp } from "./components";
+import { Header, InputTodo, List, PopUp, FilterTodo } from "./components";
 import "./App.scss";
 
 export const App = () => {
@@ -43,11 +43,11 @@ export const App = () => {
     }, [delId, todos]);
 
     // функция для редактирования элемента после клика на нем путем получение значения в CardTodo
-    const onChangeTodo = useCallback(({ id, value }: IChangeTodo) => {
+    const onChangeTodo = useCallback(({ id, value, status }: IChangeTodo) => {
         setTodos((oldTodos) =>
             oldTodos.map((oldTodo) =>
                 oldTodo.id === id && value.length > 2
-                    ? { id, name: value, completed: false }
+                    ? { id, name: value, completed: false, status }
                     : oldTodo
             )
         );
@@ -83,8 +83,10 @@ export const App = () => {
             <div className="app">
                 <Header quantityTodo={quantityTodo} />
                 <InputTodo addTodo={addTodo} />
+                <FilterTodo setTodos={setTodos} />
                 <List
                     todos={todos}
+                    setTodos={setTodos}
                     onChangeTodo={onChangeTodo}
                     toggleComplete={toggleComplete}
                     delTodo={popUpOpen}

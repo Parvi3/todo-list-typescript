@@ -7,15 +7,15 @@ import "./Icon.scss";
 
 export const Icon: FC<IIcon> = ({
     name,
-    className,
+    className = "",
     color = DEFAULT_ICON.COLOR,
     width = DEFAULT_ICON.WIDTH,
     height = DEFAULT_ICON.HEIGHT,
 }) => {
     return (
         <svg
-            className={classNames("icon-todo", `icon-todo-${name}`, {
-                className: !!className,
+            className={classNames("icon-todo", {
+                [className]: !!className,
             })}
             fill={color}
             width={width}

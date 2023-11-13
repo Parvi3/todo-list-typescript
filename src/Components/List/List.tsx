@@ -7,6 +7,7 @@ export const List = ({
     onChangeTodo,
     toggleComplete,
     delTodo,
+    setTodos,
 }: IList) => {
     return (
         <ul className="list">
@@ -18,6 +19,7 @@ export const List = ({
                     onChangeTodo={onChangeTodo}
                     delTodo={delTodo}
                     toggleComplete={toggleComplete}
+                    setTodos={setTodos}
                 />
             ))}
         </ul>
