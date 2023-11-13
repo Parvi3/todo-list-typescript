@@ -7,7 +7,7 @@ import "./InputTodo.scss";
 
 export const InputTodo = ({ addTodo }: IInputTodo) => {
     const [value, setValue] = useState("");
-    console.log(value);
+
     // функция для получения значение после onChange в инпуте
     const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
@@ -21,7 +21,12 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
 
                 event.stopPropagation();
 
-                addTodo({ id: uuidv4(), name: value, completed: false });
+                addTodo({
+                    id: uuidv4(),
+                    name: value,
+                    completed: false,
+                    status: "",
+                });
 
                 setValue("");
             } catch {

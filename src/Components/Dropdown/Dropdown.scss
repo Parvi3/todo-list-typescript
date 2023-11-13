@@ -1,0 +1,33 @@
+.dropdown-todo {
+    display: flex;
+    gap: 15px;
+
+    &__button {
+        &-job {
+            background-color: rgba(96, 174, 96, 0.668);
+            border-radius: 10px 10px;
+            color: black;
+            width: 10%;
+        }
+
+        &-study {
+            background-color:rgba(166, 168, 76, 0.693);
+            border-radius: 10px 10px;
+            color: black;
+            width: 10%;
+        }
+
+        &-home {
+            background-color:rgba(196, 92, 122, 0.693);
+            border-radius: 10px 10px;
+            color: black;
+            width: 10%;
+        }
+        &-reset {
+            background-color:rgba(122, 158, 150, 0.693);
+            border-radius: 10px 10px;
+            color: black;
+            width: 23.7%;
+        }
+    }
+}

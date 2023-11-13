@@ -1,0 +1,39 @@
+.filter-todo {
+    display: flex;
+    position: absolute;
+    width: 40%;
+    height: 20px;
+    left: 46.1%;
+    top: 17.5%;
+    gap: 15px;
+
+    &__button {
+        &-job {
+            background-color: rgba(96, 174, 96, 0.668);
+            border-radius: 10px 10px;
+            color: black;
+            width: 10%;
+        }
+
+        &-study {
+            background-color:rgba(166, 168, 76, 0.693);
+            border-radius: 10px 10px;
+            color: black;
+            width: 10%;
+        }
+
+        &-home {
+            background-color:rgba(196, 92, 122, 0.693);
+            border-radius: 10px 10px;
+            color: black;
+            width: 10%;
+        }
+
+        &-reset {
+            background-color:rgba(122, 158, 150, 0.693);
+            border-radius: 10px 10px;
+            color: black;
+            width: 22.7%;
+        }
+    }
+}

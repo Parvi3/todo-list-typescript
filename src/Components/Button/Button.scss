@@ -2,11 +2,10 @@
 .button-todo {
     border: none;
     cursor: pointer;
-    margin-left: 20px;
     transition: all .3s;
 
     &--primary {
-        background-color: #60656a;
+        background-color: #65696c;
         color: #fff;
         &:hover {
             filter: brightness(140%);
@@ -16,6 +15,7 @@
     }
 
     &--secondary {
+        margin-left: 20px;
         background-color:  #345575;
         color: #fff;
     }

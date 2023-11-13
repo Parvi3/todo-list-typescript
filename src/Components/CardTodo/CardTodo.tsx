@@ -1,9 +1,10 @@
-import React, { FC, useCallback, FocusEvent } from "react";
+import React, { FC, useCallback, FocusEvent, useState } from "react";
 import { ICardTodo } from "./CardTodo.interface";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { Checkbox } from "../Checkbox";
 import "./CardTodo.scss";
+import { Dropdown } from "../Dropdown";
 
 export const CardTodo: FC<ICardTodo> = ({
     todo,
@@ -11,8 +12,9 @@ export const CardTodo: FC<ICardTodo> = ({
     onChangeTodo,
     toggleComplete,
     delTodo,
+    setTodos,
 }) => {
-    const { id, name, completed } = todo ?? {};
+    const { id, name, completed, status } = todo ?? {};
 
     // функция для передачи в delTodo id и после в верх по дом дереву
     const onClickHandler = useCallback(() => {
@@ -24,10 +26,10 @@ export const CardTodo: FC<ICardTodo> = ({
         (event: FocusEvent<HTMLInputElement, Element>) => {
             const newValue = event.target.value;
             if (name !== newValue) {
-                onChangeTodo({ id, value: newValue });
+                onChangeTodo({ id, value: newValue, status });
             }
         },
-        [id, name, onChangeTodo]
+        [status, id, name, onChangeTodo]
     );
 
     // флажок для completed: передача id для изменение состояния на противоположное
@@ -41,11 +43,74 @@ export const CardTodo: FC<ICardTodo> = ({
     // удаляет из списка пустые формы
     const blankStringCheck = name.length > 0 && name.trim() !== "";
 
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const onOpenDrop = useCallback(() => {
+        setIsOpen(!isOpen);
+    }, [isOpen]);
+
+    const onCloseJob = useCallback(
+        (id: string) => {
+            setIsOpen(false);
+            setTodos((todos) =>
+                todos.map((todo) =>
+                    todo.id === id ? { ...todo, status: "Job" } : todo
+                )
+            );
+        },
+        [setTodos]
+    );
+
+    const onCloseStudy = useCallback(
+        (id: string) => {
+            setIsOpen(false);
+            setTodos((todos) =>
+                todos.map((todo) =>
+                    todo.id === id ? { ...todo, status: "Study" } : todo
+                )
+            );
+        },
+        [setTodos]
+    );
+
+    const onCloseHome = useCallback(
+        (id: string) => {
+            setIsOpen(false);
+            setTodos((todos) =>
+                todos.map((todo) =>
+                    todo.id === id ? { ...todo, status: "Home" } : todo
+                )
+            );
+        },
+        [setTodos]
+    );
+
+    const onCloseReset = useCallback(
+        (id: string) => {
+            setIsOpen(false);
+            setTodos((todos) =>
+                todos.map((todo) =>
+                    todo.id === id ? { ...todo, status: "" } : todo
+                )
+            );
+        },
+        [setTodos]
+    );
+
+    const inputColorJob = status === "Job" ? "input-color__job" : "";
+
+    const inputColorStudy = status === "Study" ? "input-color__study" : "";
+
+    const inputColorHome = status === "Home" ? "input-color__home" : "";
+
     return blankStringCheck ? (
         <li className={`${className} card-todo`}>
-            <div className="card-todo__wrapper">
+            <div
+                className={`card-todo__wrapper ${inputColorJob} ${inputColorStudy} ${inputColorHome}`}
+            >
                 <Checkbox
                     className="card-todo__checkbox"
+                    check={completed}
                     onClick={onClickComplete}
                 />
 
@@ -58,7 +123,31 @@ export const CardTodo: FC<ICardTodo> = ({
                     onBlur={onChangeHandler}
                 />
             </div>
-            <Button mode="primary" iconName="clear" onClick={onClickHandler} />
+
+            <div className="card-todo__wrapper-button">
+                <Button
+                    onClick={onOpenDrop}
+                    className="card-todo__button"
+                    text="Статус"
+                />
+
+                <Button
+                    iconName="clear"
+                    onClick={onClickHandler}
+                    className="card-todo__button"
+                />
+            </div>
+
+            {isOpen && (
+                <Dropdown
+                    id={id}
+                    onCloseJob={onCloseJob}
+                    onCloseStudy={onCloseStudy}
+                    onCloseHome={onCloseHome}
+                    onCloseReset={onCloseReset}
+                    className="card-todo__dropdown"
+                />
+            )}
         </li>
     ) : null;
 };

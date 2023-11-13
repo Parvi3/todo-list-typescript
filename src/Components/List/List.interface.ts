@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { IChangeTodo, ITodo } from "../../interface";
 
 export interface IList {
@@ -6,4 +7,5 @@ export interface IList {
     onChangeTodo: (props: IChangeTodo) => void;
     toggleComplete: (id: string) => void;
     delTodo: (todo: string) => void;
+    setTodos: Dispatch<SetStateAction<ITodo[]>>;
 }
