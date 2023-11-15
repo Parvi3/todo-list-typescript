@@ -8,32 +8,38 @@
     gap: 15px;
 
     &__button {
-        &-job {
+        &--job {
             background-color: rgba(96, 174, 96, 0.668);
             border-radius: 10px 10px;
             color: black;
             width: 10%;
         }
 
-        &-study {
+        &--study {
             background-color:rgba(166, 168, 76, 0.693);
             border-radius: 10px 10px;
             color: black;
             width: 10%;
         }
 
-        &-home {
+        &--home {
             background-color:rgba(196, 92, 122, 0.693);
             border-radius: 10px 10px;
             color: black;
             width: 10%;
         }
 
-        &-reset {
+        &--reset {
             background-color:rgba(122, 158, 150, 0.693);
             border-radius: 10px 10px;
             color: black;
             width: 22.7%;
+        }
+
+        &--active {
+            filter: brightness(140%);
+            transform: scale(1.111);
+            border-radius: 10px 10px;
         }
     }
 }

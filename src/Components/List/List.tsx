@@ -2,13 +2,7 @@ import React from "react";
 import { CardTodo } from "../CardTodo";
 import { IList } from "./List.interface";
 
-export const List = ({
-    todos,
-    onChangeTodo,
-    toggleComplete,
-    delTodo,
-    setTodos,
-}: IList) => {
+export const List = ({ todos, onChangeTodo, delTodo }: IList) => {
     return (
         <ul className="list">
             {todos.map((todo) => (
@@ -18,8 +12,6 @@ export const List = ({
                     todo={todo}
                     onChangeTodo={onChangeTodo}
                     delTodo={delTodo}
-                    toggleComplete={toggleComplete}
-                    setTodos={setTodos}
                 />
             ))}
         </ul>

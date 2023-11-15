@@ -1,12 +1,15 @@
+import { CATEGORY } from "../constans";
+
 export interface ITodo {
     id: string;
-    name: string;
+    value: string;
     completed: boolean;
-    status: string;
+    category: CATEGORY;
 }
 
 export interface IChangeTodo {
     id: string;
-    value: string;
-    status: string;
+    value?: string;
+    completed?: boolean;
+    category?: CATEGORY;
 }

@@ -1,6 +1,5 @@
-import React from "react";
-import "./HeaderTodo.scss";
 import { IQuantity } from "./Header.interface";
+import "./HeaderTodo.scss";
 
 export const Header = ({ quantityTodo }: IQuantity) => {
     return (
