@@ -1,20 +1,27 @@
-import React, { FC, useCallback, FocusEvent, useState } from "react";
+import React, {
+    FC,
+    useCallback,
+    FocusEvent,
+    useState,
+    SyntheticEvent,
+} from "react";
 import { ICardTodo } from "./CardTodo.interface";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { Checkbox } from "../Checkbox";
-import "./CardTodo.scss";
 import { Dropdown } from "../Dropdown";
+import { CATEGORY } from "../../constans";
+import classNames from "classnames";
+import "./CardTodo.scss";
 
 export const CardTodo: FC<ICardTodo> = ({
     todo,
     className,
     onChangeTodo,
-    toggleComplete,
     delTodo,
-    setTodos,
 }) => {
-    const { id, name, completed, status } = todo ?? {};
+    const { id, value, completed, category } = todo ?? {};
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     // функция для передачи в delTodo id и после в верх по дом дереву
     const onClickHandler = useCallback(() => {
@@ -25,108 +32,70 @@ export const CardTodo: FC<ICardTodo> = ({
     const onChangeHandler = useCallback(
         (event: FocusEvent<HTMLInputElement, Element>) => {
             const newValue = event.target.value;
-            if (name !== newValue) {
-                onChangeTodo({ id, value: newValue, status });
+            if (value !== newValue) {
+                onChangeTodo({ id, value: newValue, category });
             }
         },
-        [status, id, name, onChangeTodo]
+        [value, onChangeTodo, id, category]
     );
 
     // флажок для completed: передача id для изменение состояния на противоположное
-    const onClickComplete = useCallback(() => {
-        toggleComplete(id);
-    }, [id, toggleComplete]);
-
-    // зачеркивает текст
-    const completedLineThrough = completed ? `completed` : "";
+    const onClickCheckbox = useCallback(() => {
+        onChangeTodo({ id, completed: !completed });
+    }, [completed, id, onChangeTodo]);
 
     // удаляет из списка пустые формы
-    const blankStringCheck = name.length > 0 && name.trim() !== "";
+    const blankStringCheck = value.length > 0 && value.trim() !== "";
 
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-
-    const onOpenDrop = useCallback(() => {
+    // открывает выпадашку
+    const onOpenDropdown = useCallback(() => {
         setIsOpen(!isOpen);
     }, [isOpen]);
 
-    const onCloseJob = useCallback(
-        (id: string) => {
-            setIsOpen(false);
-            setTodos((todos) =>
-                todos.map((todo) =>
-                    todo.id === id ? { ...todo, status: "Job" } : todo
-                )
-            );
+    // после клика на саму кнопку в выпадашке меняет катергорию карточки
+    const onClickDropdownButton = useCallback(
+        (event: SyntheticEvent<HTMLButtonElement>) => {
+            const target = (event.target as HTMLButtonElement) ?? {};
+
+            const categoryID = target.id as CATEGORY;
+
+            if (categoryID !== category) {
+                onChangeTodo({ id, category: categoryID });
+                setIsOpen(false);
+            }
         },
-        [setTodos]
+        [category, id, onChangeTodo]
     );
-
-    const onCloseStudy = useCallback(
-        (id: string) => {
-            setIsOpen(false);
-            setTodos((todos) =>
-                todos.map((todo) =>
-                    todo.id === id ? { ...todo, status: "Study" } : todo
-                )
-            );
-        },
-        [setTodos]
-    );
-
-    const onCloseHome = useCallback(
-        (id: string) => {
-            setIsOpen(false);
-            setTodos((todos) =>
-                todos.map((todo) =>
-                    todo.id === id ? { ...todo, status: "Home" } : todo
-                )
-            );
-        },
-        [setTodos]
-    );
-
-    const onCloseReset = useCallback(
-        (id: string) => {
-            setIsOpen(false);
-            setTodos((todos) =>
-                todos.map((todo) =>
-                    todo.id === id ? { ...todo, status: "" } : todo
-                )
-            );
-        },
-        [setTodos]
-    );
-
-    const inputColorJob = status === "Job" ? "input-color__job" : "";
-
-    const inputColorStudy = status === "Study" ? "input-color__study" : "";
-
-    const inputColorHome = status === "Home" ? "input-color__home" : "";
 
     return blankStringCheck ? (
         <li className={`${className} card-todo`}>
             <div
-                className={`card-todo__wrapper ${inputColorJob} ${inputColorStudy} ${inputColorHome}`}
+                className={classNames("card-todo__wrapper", {
+                    "card-todo__color--job": category === CATEGORY.JOB,
+                    "card-todo__color--study": category === CATEGORY.STUDY,
+                    "card-todo__color--home": category === CATEGORY.HOME,
+                })}
             >
                 <Checkbox
                     className="card-todo__checkbox"
                     check={completed}
-                    onClick={onClickComplete}
+                    onClick={onClickCheckbox}
                 />
 
                 <Input
                     disabled={completed}
                     placeholderText="Пустая задача исчезнет из списка"
-                    className={`${completedLineThrough}`}
-                    id={id}
-                    defaultValue={name}
+                    className={classNames("card-todo__input", {
+                        "card-todo__input--strikethrough": completed,
+                    })}
+                    defaultValue={value}
                     onBlur={onChangeHandler}
                 />
             </div>
 
             <div className="card-todo__wrapper-button">
                 <Button
-                    onClick={onOpenDrop}
+                    onClick={onOpenDropdown}
                     className="card-todo__button"
                     text="Статус"
                 />
@@ -140,11 +109,7 @@ export const CardTodo: FC<ICardTodo> = ({
 
             {isOpen && (
                 <Dropdown
-                    id={id}
-                    onCloseJob={onCloseJob}
-                    onCloseStudy={onCloseStudy}
-                    onCloseHome={onCloseHome}
-                    onCloseReset={onCloseReset}
+                    onClickDropdownButton={onClickDropdownButton}
                     className="card-todo__dropdown"
                 />
             )}

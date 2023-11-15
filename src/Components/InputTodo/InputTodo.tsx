@@ -1,8 +1,10 @@
-import React, { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IInputTodo } from "./InputTodo.interface";
 import { Button } from "../Button";
 import { Input } from "../Input/Input";
+import { CATEGORY } from "../../constans";
+import classNames from "classnames";
 import "./InputTodo.scss";
 
 export const InputTodo = ({ addTodo }: IInputTodo) => {
@@ -23,9 +25,9 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
 
                 addTodo({
                     id: uuidv4(),
-                    name: value,
+                    value: value,
                     completed: false,
-                    status: "",
+                    category: CATEGORY.NONE,
                 });
 
                 setValue("");
@@ -35,8 +37,6 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
         },
         [addTodo, value]
     );
-
-    const button = value.length > 2 ? "form-todo__button" : undefined;
 
     return (
         <form className="form-todo" onSubmit={onSubmit}>
@@ -51,7 +51,9 @@ export const InputTodo = ({ addTodo }: IInputTodo) => {
                 />
 
                 <Button
-                    className={button}
+                    className={classNames({
+                        "form-todo__button": value.length > 2,
+                    })}
                     mode="secondary"
                     type="submit"
                     disabled={!value.length}

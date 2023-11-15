@@ -1,33 +1,14 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import { Button } from "../Button";
 import { IDropdown } from "./dropdown.interface";
 import classNames from "classnames";
+import { CATEGORY } from "../../constans";
 import "./Dropdown.scss";
 
 export const Dropdown: FC<IDropdown> = ({
     className = "",
-    id,
-    onCloseJob,
-    onCloseStudy,
-    onCloseHome,
-    onCloseReset,
+    onClickDropdownButton,
 }) => {
-    const onClickJob = useCallback(() => {
-        onCloseJob(id);
-    }, [id, onCloseJob]);
-
-    const onClickStudy = useCallback(() => {
-        onCloseStudy(id);
-    }, [id, onCloseStudy]);
-
-    const onClickHome = useCallback(() => {
-        onCloseHome(id);
-    }, [id, onCloseHome]);
-
-    const onClickReset = useCallback(() => {
-        onCloseReset(id);
-    }, [id, onCloseReset]);
-
     return (
         <div
             className={classNames("dropdown-todo", {
@@ -35,22 +16,26 @@ export const Dropdown: FC<IDropdown> = ({
             })}
         >
             <Button
-                onClick={onClickJob}
+                id={CATEGORY.JOB}
+                onClick={onClickDropdownButton}
                 text="Р"
                 className="dropdown-todo__button-job"
             />
             <Button
-                onClick={onClickStudy}
+                id={CATEGORY.STUDY}
+                onClick={onClickDropdownButton}
                 text="У"
                 className="dropdown-todo__button-study"
             />
             <Button
-                onClick={onClickHome}
+                id={CATEGORY.HOME}
+                onClick={onClickDropdownButton}
                 text="Д"
                 className="dropdown-todo__button-home"
             />
             <Button
-                onClick={onClickReset}
+                id={CATEGORY.NONE}
+                onClick={onClickDropdownButton}
                 text="Сбросить"
                 className="dropdown-todo__button-reset"
             />

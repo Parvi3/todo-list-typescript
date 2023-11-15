@@ -1,24 +1,16 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import classNames from "classnames";
 import { Button } from "../Button";
-import { IFilterTodo } from "./filterTodo.interface";
-import "./filterTodo.scss";
+import { IFilterTodo } from "./FilterTodo.interface";
+import { CATEGORY } from "../../constans";
+import "./FilterTodo.scss";
 
-export const FilterTodo: FC<IFilterTodo> = ({ className = "", setTodos }) => {
-    const onClickJob = useCallback(() => {
-        setTodos((todos) => todos.filter((todos) => todos.status === "Job"));
-    }, [setTodos]);
-
-    const onClickStudy = useCallback(() => {
-        setTodos((todos) => todos.filter((todos) => todos.status === "Study"));
-    }, [setTodos]);
-
-    const onClickHome = useCallback(() => {
-        setTodos((todos) => todos.filter((todos) => todos.status === "Home"));
-    }, [setTodos]);
-
-    const onClickReset = useCallback(() => {}, []);
-
+export const FilterTodo: FC<IFilterTodo> = ({
+    className = "",
+    onClickFilter,
+    onClickResetFilter,
+    activeFilter,
+}) => {
     return (
         <div
             className={classNames("filter-todo", {
@@ -26,27 +18,48 @@ export const FilterTodo: FC<IFilterTodo> = ({ className = "", setTodos }) => {
             })}
         >
             <Button
-                onClick={onClickJob}
+                id={CATEGORY.JOB}
+                onClick={onClickFilter}
                 text="Р"
-                className="filter-todo__button-job"
+                className={classNames(
+                    "filter-todo__button filter-todo__button--job",
+                    {
+                        "filter-todo__button--active":
+                            activeFilter === CATEGORY.JOB,
+                    }
+                )}
             />
 
             <Button
-                onClick={onClickStudy}
+                id={CATEGORY.STUDY}
+                onClick={onClickFilter}
                 text="У"
-                className="filter-todo__button-study"
+                className={classNames(
+                    "filter-todo__button filter-todo__button--study",
+                    {
+                        "filter-todo__button--active":
+                            activeFilter === CATEGORY.STUDY,
+                    }
+                )}
             />
 
             <Button
-                onClick={onClickHome}
+                id={CATEGORY.HOME}
+                onClick={onClickFilter}
                 text="Д"
-                className="filter-todo__button-home"
+                className={classNames(
+                    "filter-todo__button filter-todo__button--home",
+                    {
+                        "filter-todo__button--active":
+                            activeFilter === CATEGORY.HOME,
+                    }
+                )}
             />
 
             <Button
-                onClick={onClickReset}
+                onClick={onClickResetFilter}
                 text="Сбросить"
-                className="filter-todo__button-reset"
+                className="filter-todo__button--reset"
             />
         </div>
     );

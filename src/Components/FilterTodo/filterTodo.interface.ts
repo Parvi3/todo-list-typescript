@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
-import { ITodo } from "~/interface";
+import { SyntheticEvent } from "react";
 
 export interface IFilterTodo {
     className?: string;
-    setTodos: Dispatch<SetStateAction<ITodo[]>>;
+    onClickFilter: (event: SyntheticEvent<HTMLButtonElement>) => void;
+    onClickResetFilter: () => void;
+    activeFilter: string;
 }

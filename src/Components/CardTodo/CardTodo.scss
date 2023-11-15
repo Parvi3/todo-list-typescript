@@ -21,6 +21,10 @@ ul {
         margin: 0;
     }
 
+    &__input--strikethrough {
+        text-decoration: line-through;
+    }
+
     &__wrapper {
         display: flex;
         justify-content: center;
@@ -43,22 +47,16 @@ ul {
         height: 20px;
         left: 40.6%;
     }
-}
 
-.input-color {
-    &__job {
+    &__color--job {
         border-color: rgba(8, 239, 8, 0.951);
     }
 
-    &__study {
+    &__color--study {
         border-color:rgba(240, 158, 6, 0.869);
     }
 
-    &__home {
+    &__color--home {
         border-color:rgba(234, 31, 89, 0.693);
     }
-}
-
-.completed {
-    text-decoration: line-through;
 }
