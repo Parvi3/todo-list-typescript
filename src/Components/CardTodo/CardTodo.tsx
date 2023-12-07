@@ -48,9 +48,17 @@ export const CardTodo: FC<ICardTodo> = ({
     const blankStringCheck = value.length > 0 && value.trim() !== "";
 
     // открывает выпадашку
-    const onOpenDropdown = useCallback(() => {
-        setIsOpen(!isOpen);
-    }, [isOpen]);
+    const onOpenDropdown = useCallback(
+        (event: { stopPropagation: () => void }) => {
+            event.stopPropagation();
+            setIsOpen(true);
+        },
+        []
+    );
+
+    const onCloseDropdown = useCallback(() => {
+        setIsOpen(false);
+    }, []);
 
     // после клика на саму кнопку в выпадашке меняет катергорию карточки
     const onClickDropdownButton = useCallback(
@@ -96,8 +104,15 @@ export const CardTodo: FC<ICardTodo> = ({
             <div className="card-todo__wrapper-button">
                 <Button
                     onClick={onOpenDropdown}
-                    className="card-todo__button"
-                    text="Статус"
+                    className={classNames("card-todo__button", {
+                        "card-todo__button-color--job":
+                            category === CATEGORY.JOB,
+                        "card-todo__button-color--study":
+                            category === CATEGORY.STUDY,
+                        "card-todo__button-color--home":
+                            category === CATEGORY.HOME,
+                    })}
+                    text="Категория"
                 />
 
                 <Button
@@ -110,6 +125,7 @@ export const CardTodo: FC<ICardTodo> = ({
             {isOpen && (
                 <Dropdown
                     onClickDropdownButton={onClickDropdownButton}
+                    onClose={onCloseDropdown}
                     className="card-todo__dropdown"
                 />
             )}

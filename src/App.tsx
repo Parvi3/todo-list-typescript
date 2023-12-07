@@ -101,9 +101,9 @@ export const App = () => {
 
     return (
         <div className="app">
-            <div className="app">
-                <Header quantityTodo={quantityTodo} />
+            <Header quantityTodo={quantityTodo} />
 
+            <div className="app__wrapper">
                 <InputTodo addTodo={addTodo} />
 
                 <FilterTodo
@@ -111,13 +111,14 @@ export const App = () => {
                     onClickFilter={onClickFilter}
                     onClickResetFilter={onClickResetFilter}
                 />
-
-                <List
-                    todos={filteredTodos}
-                    onChangeTodo={onChangeTodo}
-                    delTodo={popUpOpen}
-                />
             </div>
+
+            <List
+                todos={filteredTodos}
+                onChangeTodo={onChangeTodo}
+                delTodo={popUpOpen}
+            />
+
             <PopUp isOpen={isOpen} close={closePopUp} okClick={delTodo} />
         </div>
     );

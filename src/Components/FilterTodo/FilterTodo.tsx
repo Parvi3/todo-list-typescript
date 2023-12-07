@@ -1,9 +1,9 @@
 import { FC } from "react";
 import classNames from "classnames";
 import { Button } from "../Button";
-import { IFilterTodo } from "./FilterTodo.interface";
+import { IFilterTodo } from "./filterTodo.interface";
 import { CATEGORY } from "../../constans";
-import "./FilterTodo.scss";
+import "./filterTodo.scss";
 
 export const FilterTodo: FC<IFilterTodo> = ({
     className = "",

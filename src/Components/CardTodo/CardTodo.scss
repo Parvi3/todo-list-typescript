@@ -19,6 +19,18 @@ ul {
     &__button {
         width: 100%;
         margin: 0;
+
+        &-color--job {
+            background-color: rgba(46, 175, 46, 0.951);
+        }
+
+        &-color--study {
+            background-color: rgba(240, 158, 6, 0.869);
+        }
+
+        &-color--home {
+            background-color: rgba(234, 31, 89, 0.693);
+        }
     }
 
     &__input--strikethrough {
